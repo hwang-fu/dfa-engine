@@ -66,4 +66,17 @@ console.log(trace);
 // }
 ```
 
+## API
+
+### `new DFA(config: DFAConfig)`
+
+Creates a new DFA instance. Throws `DFAValidationError` if configuration is invalid.
+
+### `dfa.run(input: string): DFAResult`
+
+Returns `"accepted"` or `"rejected"`.
+
+### `dfa.runWithTrace(input: string): ExecutionTrace`
+
+Returns detailed execution trace for debugging.
 
