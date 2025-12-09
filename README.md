@@ -19,3 +19,14 @@ A **Deterministic Finite Automaton** is a theoretical model of computation defin
 | δ | Transition function | Q × Σ → Q |
 | q₀ | Start state | Initial state (q₀ ∈ Q) |
 | F | Accepting states | Set of final states (F ⊆ Q) |
+
+## Installation
+
+Clone and install locally:
+```bash
+git clone https://github.com/hwang-fu/dfa-engine.git
+cd dfa-engine
+bun install
+```
+
+
