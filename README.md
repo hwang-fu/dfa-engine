@@ -80,3 +80,12 @@ Returns `"accepted"` or `"rejected"`.
 
 Returns detailed execution trace for debugging.
 
+## Development
+```bash
+# Run tests
+bun test
+
+# Lint and format
+bun run check
+bun run fix
+```
