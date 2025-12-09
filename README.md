@@ -49,6 +49,21 @@ console.log(evenBinaryDFA.run("1010")); // "accepted"
 console.log(evenBinaryDFA.run("1011")); // "rejected"
 ```
 
+## Debugging with Execution Trace
+```typescript
+const trace = evenBinaryDFA.runWithTrace("10");
 
+console.log(trace);
+// {
+//   input: "10",
+//   startState: "q0",
+//   steps: [
+//     { fromState: "q0", symbol: "1", toState: "q0" },
+//     { fromState: "q0", symbol: "0", toState: "q1" }
+//   ],
+//   finalState: "q1",
+//   result: "accepted"
+// }
+```
 
 
