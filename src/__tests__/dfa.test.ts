@@ -80,6 +80,14 @@ describe('DFA Validation', () => {
   it('accepts valid DFA configuration', () => {
     expect(() => {
       new DFA({
+        states: ["q0", "q1"],
+        alphabet: ["0", "1"],
+        transitions: {
+          q0: { "0": "q1", "1": "q0" },
+          q1: { "0": "q1", "1": "q0" },
+        },
+        startState: "q0",
+        acceptingStates: ["q1"],
       });
     }).not.toThrow();
   });
