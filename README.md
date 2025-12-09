@@ -1,15 +1,7 @@
 # dfa-engine
 
-To install dependencies:
+A TypeScript implementation of a Deterministic Finite Automaton (DFA) engine.
 
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.3.4. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
+[![Bun](https://img.shields.io/badge/Bun-1.0-black.svg)](https://bun.sh/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
