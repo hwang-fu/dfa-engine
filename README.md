@@ -29,4 +29,26 @@ cd dfa-engine
 bun install
 ```
 
+## Usage
+```typescript
+import { DFA } from "dfa-engine";
+
+// DFA that accepts binary strings ending in "0" (even numbers)
+const evenBinaryDFA = new DFA({
+  states: ["q0", "q1"],
+  alphabet: ["0", "1"],
+  transitions: {
+    q0: { "0": "q1", "1": "q0" },
+    q1: { "0": "q1", "1": "q0" },
+  },
+  startState: "q0",
+  acceptingStates: ["q1"],
+});
+
+console.log(evenBinaryDFA.run("1010")); // "accepted"
+console.log(evenBinaryDFA.run("1011")); // "rejected"
+```
+
+
+
 
