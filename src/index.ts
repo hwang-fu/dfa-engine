@@ -1,3 +1,5 @@
+export { DFA } from "./dfa";
+export { DFAError, DFAValidationError } from "./errors";
 export type {
 	DFAConfig,
 	DFAResult,
