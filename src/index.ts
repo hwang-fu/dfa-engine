@@ -1,1 +1,6 @@
-console.log("Hello via Bun!");
+export type {
+	DFAConfig,
+	DFAResult,
+	ExecutionStep,
+	ExecutionTrace,
+} from "./types";
