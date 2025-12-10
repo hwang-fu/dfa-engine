@@ -178,3 +178,62 @@ mod binary_division_by_2 {
     }
 }
 
+mod contains_ab {
+    use super::*;
+
+    fn contains_ab_dfa() -> DFA {
+        DFA::new(Config {
+            states: vec!["q0".into(), "q1".into(), "q2".into()],
+            alphabet: vec!['a', 'b'],
+            transitions: transitions(&[
+                ("q0", &[('a', "q1"), ('b', "q0")]),
+                ("q1", &[('a', "q1"), ('b', "q2")]),
+                ("q2", &[('a', "q2"), ('b', "q2")]),
+            ]),
+            start_state: "q0".into(),
+            accepting_states: vec!["q2".into()],
+        })
+        .unwrap()
+    }
+
+    #[test]
+    fn accepts_ab() {
+        assert!(contains_ab_dfa().run("ab"));
+    }
+
+    #[test]
+    fn accepts_aab() {
+        assert!(contains_ab_dfa().run("aab"));
+    }
+
+    #[test]
+    fn accepts_bab() {
+        assert!(contains_ab_dfa().run("bab"));
+    }
+
+    #[test]
+    fn accepts_abbb() {
+        assert!(contains_ab_dfa().run("abbb"));
+    }
+
+    #[test]
+    fn rejects_a() {
+        assert!(!contains_ab_dfa().run("a"));
+    }
+
+    #[test]
+    fn rejects_ba() {
+        assert!(!contains_ab_dfa().run("ba"));
+    }
+
+    #[test]
+    fn rejects_bbb() {
+        assert!(!contains_ab_dfa().run("bbb"));
+    }
+
+    #[test]
+    fn rejects_empty() {
+        assert!(!contains_ab_dfa().run(""));
+    }
+}
+
