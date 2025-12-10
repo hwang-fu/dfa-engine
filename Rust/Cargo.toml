@@ -1,6 +1,22 @@
 [package]
 name = "dfa-engine"
 version = "0.1.0"
-edition = "2024"
+edition = "2024"        # Rust Language edition (not your project year)
+description = "A Rust implementation of a Deterministic Finite Automaton (DFA) engine"
+license = "MIT"
+
+[lib]
+path = "src/lib.rs"     # lib entry
+
+[[bin]]
+name = "dfa-demo"
+path = "src/main.rs"    # binary entry
 
 [dependencies]
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = "warn"
+pedantic = "warn"

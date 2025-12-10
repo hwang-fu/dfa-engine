@@ -1,0 +1,6 @@
+# Cargo build artifacts
+/target/
+
+# Cargo.lock for libraries (keep it for binaries)
+# Since we have both lib + bin, we'll keep it
+# Cargo.lock
