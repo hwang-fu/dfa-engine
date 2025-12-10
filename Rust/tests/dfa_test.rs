@@ -120,3 +120,61 @@ mod validation {
     }
 }
 
+mod binary_division_by_2 {
+    use super::*;
+
+    fn even_binary_dfa() -> DFA {
+        DFA::new(Config {
+            states: vec!["q0".into(), "q1".into()],
+            alphabet: vec!['0', '1'],
+            transitions: transitions(&[
+                ("q0", &[('0', "q1"), ('1', "q0")]),
+                ("q1", &[('0', "q1"), ('1', "q0")]),
+            ]),
+            start_state: "q0".into(),
+            accepting_states: vec!["q1".into()],
+        })
+        .unwrap()
+    }
+
+    #[test]
+    fn accepts_0() {
+        assert!(even_binary_dfa().run("0"));
+    }
+
+    #[test]
+    fn accepts_10() {
+        assert!(even_binary_dfa().run("10"));
+    }
+
+    #[test]
+    fn accepts_1010() {
+        assert!(even_binary_dfa().run("1010"));
+    }
+
+    #[test]
+    fn rejects_1() {
+        assert!(!even_binary_dfa().run("1"));
+    }
+
+    #[test]
+    fn rejects_11() {
+        assert!(!even_binary_dfa().run("11"));
+    }
+
+    #[test]
+    fn rejects_1011() {
+        assert!(!even_binary_dfa().run("1011"));
+    }
+
+    #[test]
+    fn rejects_empty_string() {
+        assert!(!even_binary_dfa().run(""));
+    }
+
+    #[test]
+    fn rejects_invalid_symbol() {
+        assert!(!even_binary_dfa().run("102"));
+    }
+}
+
