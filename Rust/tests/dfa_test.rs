@@ -237,3 +237,54 @@ mod contains_ab {
     }
 }
 
+mod execution_trace {
+    use super::*;
+
+    fn dfa() -> DFA {
+        DFA::new(Config {
+            states: vec!["q0".into(), "q1".into()],
+            alphabet: vec!['0', '1'],
+            transitions: transitions(&[
+                ("q0", &[('0', "q1"), ('1', "q0")]),
+                ("q1", &[('0', "q1"), ('1', "q0")]),
+            ]),
+            start_state: "q0".into(),
+            accepting_states: vec!["q1".into()],
+        })
+        .unwrap()
+    }
+
+    #[test]
+    fn trace_for_accepted_input() {
+        let trace = dfa().run_with_trace("10");
+
+        assert_eq!(trace.input, "10");
+        assert_eq!(trace.start_state, "q0");
+        assert_eq!(trace.final_state, "q1");
+        assert!(trace.result);
+        assert_eq!(trace.steps.len(), 2);
+        assert_eq!(trace.steps[0].from_state, "q0");
+        assert_eq!(trace.steps[0].symbol, '1');
+        assert_eq!(trace.steps[0].to_state, "q0");
+        assert_eq!(trace.steps[1].from_state, "q0");
+        assert_eq!(trace.steps[1].symbol, '0');
+        assert_eq!(trace.steps[1].to_state, "q1");
+    }
+
+    #[test]
+    fn trace_for_rejected_input() {
+        let trace = dfa().run_with_trace("11");
+
+        assert_eq!(trace.final_state, "q0");
+        assert!(!trace.result);
+    }
+
+    #[test]
+    fn trace_for_empty_input() {
+        let trace = dfa().run_with_trace("");
+
+        assert!(trace.steps.is_empty());
+        assert_eq!(trace.final_state, "q0");
+        assert!(!trace.result);
+    }
+}
